@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import java.util.Random
 
 class MainActivity : AppCompatActivity() {
@@ -18,11 +19,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun lancaDados() {
+
+        //'ponteiro' para a TextView
+        val txt = findViewById<TextView>(R.id.textView)
+
         //gerar um número aleatório, entre 1 e 6
         var novoNumAleatorios = 1 * Random().nextInt(6) + 1;
 
+        //avisar o utilizador que o número gerado é igual ao que existia
+        if(txt.text == novoNumAleatorios.toString()){
+            Toast.makeText(this, "O número gerado é igual ao anterior", Toast.LENGTH_SHORT).show()
+        }
+
         //alterar o texto da TextView com esse valor
-        val txt = findViewById<TextView>(R.id.textView)
         txt.text = novoNumAleatorios.toString()
 
         //alterar a imagem do dado, para refletir esta alteração
